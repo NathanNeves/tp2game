@@ -2,6 +2,7 @@ package commanders.of.jogoddar.classes;
 
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Jogador {
     private String nome;
@@ -14,7 +15,6 @@ public class Jogador {
     private Personagem personagem;
     private ArrayList<Carta> mao = new ArrayList<>();
     private Arma item = null;
-
     public Jogador(String nome, Personagem personagem){
         this.nome = nome;
         this.personagem = personagem;
@@ -45,11 +45,13 @@ public class Jogador {
 
     public void comprarCarta(ArrayList<Carta> baralho){
         Carta carta = baralho.get(baralho.size() - 1);
-        this.mao.add(carta);
         baralho.remove(baralho.size() - 1);
-
-        if(mao.size() > 3){
+        if(mao.size() >= 3){
             mao.remove(0);
+            mao.add(0,carta);
+        }else{
+            this.mao.add(carta);
+    
         }
     }
 
@@ -66,7 +68,9 @@ public class Jogador {
         }else{
             this.vida -= dano;
         }
-        System.out.println(this.vida);
+        JOptionPane.showMessageDialog(null,"A vida atual do "+this.nome+" e de: "+this.vida);
+        
+        
     }
 
     public void buffar(Buff buff){
@@ -110,4 +114,5 @@ public class Jogador {
             return false;
         }
     }
+    
 }

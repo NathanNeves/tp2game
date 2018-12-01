@@ -1,13 +1,15 @@
 package commanders.of.jogoddar.classes;
 
+import commanders.of.jogoddar.Battle;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Buff extends Carta {
     private int duracao;
     //private Jogador alvo;
 
-    Buff(String nome, int efeito, int duracao,String imagem){
-        super(nome, efeito,imagem);
+    public Buff(String nome, int efeito, int duracao,String imagem,String miniatura,String musica){
+        super(nome, efeito,imagem,miniatura,musica);
         this.duracao = duracao;
     }
 
@@ -16,11 +18,12 @@ public class Buff extends Carta {
     }
 
     public void ativar(Jogador caster){
-
-        Jogador alvo = escolherAlvo(Main.jogadores);
+       Jogador alvo = escolherAlvo(Battle.getjogadores());
         alvo.buffar(this);
-        System.out.println(caster.getNome() + " aumentou o dano de " +alvo.getNome() + " em " + this.getEfeito() + " por " +
+        JOptionPane.showMessageDialog(null,caster.getNome() + " aumentou o dano de " +alvo.getNome() + " em " + this.getEfeito() + " por " +
                 this.getDuracao() + " turnos!");
+                this.getsfx().iniciarmusica();
+
 
     }
 

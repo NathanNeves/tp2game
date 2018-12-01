@@ -285,6 +285,7 @@ public class SelecionarPersonagem extends javax.swing.JFrame {
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:]
+        
         if(jComboBox2.getSelectedItem()=="Clerigo"){
             ImageIcon barbaro = new ImageIcon("icons\\\\clerigo.png");
             jLabel8.setIcon(barbaro);

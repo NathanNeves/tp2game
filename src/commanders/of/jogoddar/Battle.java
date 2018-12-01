@@ -5,13 +5,17 @@
  */
 package commanders.of.jogoddar;
 
+import commanders.of.jogoddar.classes.Buff;
 import commanders.of.jogoddar.classes.Carta;
 import commanders.of.jogoddar.classes.Jogador;
+import commanders.of.jogoddar.classes.Magia;
+import commanders.of.jogoddar.classes.Musica;
 import commanders.of.jogoddar.classes.Personagem;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,13 +31,51 @@ public class Battle extends javax.swing.JFrame {
     private int cont = 0;
     private int turno;
     private ArrayList<Carta> baralho = new ArrayList<Carta>();
-    private ArrayList<Jogador> jg = new ArrayList<Jogador>();
+    private static ArrayList<Jogador> jogadores = new ArrayList<Jogador>();
+    private Musica trilha = new Musica("musicas\\\\batalha.wav");
+    private Musica socar = new Musica("musicas\\\\soco.wav");
+     
+    
+    public void embaralhar(){
+        Collections.shuffle(baralho);
+    }
+    
+
     public Battle(Jogador Jogador1,Jogador Jogador2,Jogador Jogador3,Jogador Jogador4) {
-        jg.add(Jogador1);
-        jg.add(Jogador2);
-        jg.add(Jogador3);
-        jg.add(Jogador4);
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Magia("A carta",5,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Magia("A carta",5,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Magia("A carta",5,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Magia("A carta",5,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));  
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Magia("A carta",5,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));  
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Magia("A carta",5,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));  
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Buff("A grande guerra",2,3,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        baralho.add(new Magia("A carta",5,"icons\\\\carta.png","icons\\\\miniatura.png","musicas\\\\cura.wav"));
+        embaralhar();
+        jogadores.add(Jogador1);
+        jogadores.add(Jogador2);
+        jogadores.add(Jogador3);
+        jogadores.add(Jogador4);
+         for(int i = 0; i < 4; i++){
+            jogadores.get(i).comprarCarta(baralho);
+            jogadores.get(i).comprarCarta(baralho);
+            jogadores.get(i).comprarCarta(baralho);
+
+        }
         initComponents();
+        trilha.iniciarmusica();
         ordenarJogadores();
         
     }
@@ -57,20 +99,20 @@ public class Battle extends javax.swing.JFrame {
         Carta2 = new javax.swing.JLabel();
         Personagem1 = new javax.swing.JLabel();
         Carta3 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        Vezde = new javax.swing.JLabel();
         Vidaatual = new javax.swing.JLabel();
         Atual = new javax.swing.JLabel();
         vida2 = new javax.swing.JLabel();
         Carta1 = new javax.swing.JLabel();
         cartagigante = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        Soco = new javax.swing.JLabel();
+        contadordeturno = new javax.swing.JLabel();
+        fundo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
-
-        personagem2.setText("jLabel7");
         getContentPane().add(personagem2);
         personagem2.setBounds(1630, 0, 290, 280);
 
@@ -96,24 +138,44 @@ public class Battle extends javax.swing.JFrame {
 
         Carta2.setForeground(new java.awt.Color(255, 255, 255));
         Carta2.setText("jLabel4");
+        Carta2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Carta2MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Carta2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Carta2MouseExited(evt);
+            }
+        });
         getContentPane().add(Carta2);
         Carta2.setBounds(880, 830, 110, 140);
-
-        Personagem1.setText("jLabel7");
         getContentPane().add(Personagem1);
         Personagem1.setBounds(10, 0, 240, 280);
 
         Carta3.setBackground(new java.awt.Color(255, 255, 255));
         Carta3.setForeground(new java.awt.Color(255, 255, 255));
         Carta3.setText("jLabel4");
+        Carta3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Carta3MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                Carta3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                Carta3MouseExited(evt);
+            }
+        });
         getContentPane().add(Carta3);
         Carta3.setBounds(1030, 830, 110, 140);
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("Turno:");
-        getContentPane().add(jLabel13);
-        jLabel13.setBounds(490, 0, 340, 150);
+        Vezde.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        Vezde.setForeground(new java.awt.Color(255, 255, 255));
+        Vezde.setText("Vez de:");
+        getContentPane().add(Vezde);
+        Vezde.setBounds(990, 0, 340, 150);
 
         Vidaatual.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Vidaatual.setForeground(new java.awt.Color(255, 255, 255));
@@ -121,11 +183,11 @@ public class Battle extends javax.swing.JFrame {
         Vidaatual.setText("20");
         Vidaatual.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(Vidaatual);
-        Vidaatual.setBounds(440, 790, 60, 120);
+        Vidaatual.setBounds(170, 850, 60, 120);
 
         Atual.setName("Atual"); // NOI18N
         getContentPane().add(Atual);
-        Atual.setBounds(500, 680, 240, 300);
+        Atual.setBounds(230, 670, 240, 300);
 
         vida2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         vida2.setForeground(new java.awt.Color(255, 255, 255));
@@ -137,6 +199,7 @@ public class Battle extends javax.swing.JFrame {
 
         Carta1.setBackground(new java.awt.Color(255, 255, 255));
         Carta1.setForeground(new java.awt.Color(255, 255, 255));
+        Carta1.setText("jlabel1");
         Carta1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Carta1MouseClicked(evt);
@@ -150,8 +213,6 @@ public class Battle extends javax.swing.JFrame {
         });
         getContentPane().add(Carta1);
         Carta1.setBounds(740, 830, 110, 140);
-
-        cartagigante.setText("jLabel2");
         getContentPane().add(cartagigante);
         cartagigante.setBounds(630, 130, 500, 600);
 
@@ -166,9 +227,24 @@ public class Battle extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(0, 890, 120, 90);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\natha\\OneDrive\\Documentos\\img\\colosseum_121736920.jpg")); // NOI18N
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1940, 1200);
+        Soco.setIcon(new javax.swing.ImageIcon("C:\\Users\\natha\\OneDrive\\Documentos\\Commanders of Jogoddar\\icons\\fists.png")); // NOI18N
+        Soco.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SocoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(Soco);
+        Soco.setBounds(-30, 800, 150, 90);
+
+        contadordeturno.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        contadordeturno.setForeground(new java.awt.Color(255, 255, 255));
+        contadordeturno.setText("Turno:");
+        getContentPane().add(contadordeturno);
+        contadordeturno.setBounds(490, 0, 340, 150);
+
+        fundo.setIcon(new javax.swing.ImageIcon("C:\\Users\\natha\\OneDrive\\Documentos\\img\\colosseum_121736920.jpg")); // NOI18N
+        getContentPane().add(fundo);
+        fundo.setBounds(0, 0, 1940, 1200);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -192,111 +268,133 @@ public class Battle extends javax.swing.JFrame {
             turno = 0;
             cont+=1;
         }
+         contadordeturno.setText("Turno:"+this.cont);
+         Vezde.setText("Vez de:"+jogadores.get(this.turno).getNome());
+         jogadores.get(this.turno).checarBuff();
+         jogadores.get(this.turno).checaDurabilidade();
+         rodartabuleiro();
     }
     //metodo para mostrar os dados de cada personagem na interface grafica
     private void rodartabuleiro(){
         switch(turno){
             case 0:
-                ImageIcon avatar00 = new ImageIcon(jg.get(0).getpersonagem().geticon());
+                ImageIcon avatar00 = new ImageIcon(jogadores.get(0).getpersonagem().geticon());
                 Atual.setIcon(avatar00);
-                Vidaatual.setText(Integer.toString(jg.get(0).getVida()));
-                /*ImageIcon carta00 = new ImageIcon(jg.get(0).getMao().get(0).getimagem());
-                ImageIcon carta01 = new ImageIcon(jg.get(0).getMao().get(1).getimagem());
-                ImageIcon carta02 = new ImageIcon(jg.get(0).getMao().get(2).getimagem());
+                Vidaatual.setText(Integer.toString(jogadores.get(0).getVida()));
+                ImageIcon carta00 = new ImageIcon(jogadores.get(0).getMao().get(0).getimagem());
+                ImageIcon carta01 = new ImageIcon(jogadores.get(0).getMao().get(1).getimagem());
+                ImageIcon carta02 = new ImageIcon(jogadores.get(0).getMao().get(2).getimagem());
                 Carta1.setIcon(carta00);
                 Carta2.setIcon(carta01);
-                Carta3.setIcon(carta02);*/
-                ImageIcon avatar01 = new ImageIcon(jg.get(1).getpersonagem().geticon());
+                Carta3.setIcon(carta02);
+                jogadores.get(0).comprarCarta(baralho);
+                ImageIcon avatar01 = new ImageIcon(jogadores.get(1).getpersonagem().geticon());
                 Personagem1.setIcon(avatar01);
-                vida1.setText(Integer.toString(jg.get(1).getVida()));
+                vida1.setText(Integer.toString(jogadores.get(1).getVida()));
                 
-                ImageIcon avatar02 = new ImageIcon(jg.get(2).getpersonagem().geticon());
+                ImageIcon avatar02 = new ImageIcon(jogadores.get(2).getpersonagem().geticon());
                 personagem2.setIcon(avatar02);
-                vida2.setText(Integer.toString(jg.get(2).getVida()));
+                vida2.setText(Integer.toString(jogadores.get(2).getVida()));
                 
-                ImageIcon avatar03 = new ImageIcon(jg.get(3).getpersonagem().geticon());
+                ImageIcon avatar03 = new ImageIcon(jogadores.get(3).getpersonagem().geticon());
                 Personagem3.setIcon(avatar03);
-                vida3.setText(Integer.toString(jg.get(3).getVida()));
+                vida3.setText(Integer.toString(jogadores.get(3).getVida()));
+                Carta1.setEnabled(true);
+                Carta2.setEnabled(true);
+                Carta3.setEnabled(true);
                 break;
             case 1:
-                /*ImageIcon carta10 = new ImageIcon(jg.get(0).getMao().get(0).getimagem());
-                ImageIcon carta11 = new ImageIcon(jg.get(0).getMao().get(1).getimagem());
-                ImageIcon carta12 = new ImageIcon(jg.get(0).getMao().get(2).getimagem());
+                ImageIcon carta10 = new ImageIcon(jogadores.get(0).getMao().get(0).getimagem());
+                ImageIcon carta11 = new ImageIcon(jogadores.get(0).getMao().get(1).getimagem());
+                ImageIcon carta12 = new ImageIcon(jogadores.get(0).getMao().get(2).getimagem());
                 Carta1.setIcon(carta10);
                 Carta2.setIcon(carta11);
-                Carta3.setIcon(carta12);*/
-                ImageIcon avatar10 = new ImageIcon(jg.get(1).getpersonagem().geticon());
+                Carta3.setIcon(carta12);
+                ImageIcon avatar10 = new ImageIcon(jogadores.get(1).getpersonagem().geticon());
                 Atual.setIcon(avatar10);
-                Vidaatual.setText(Integer.toString(jg.get(1).getVida()));
-                
-                ImageIcon avatar11 = new ImageIcon(jg.get(2).getpersonagem().geticon());
+                Vidaatual.setText(Integer.toString(jogadores.get(1).getVida()));
+                 Carta1.setEnabled(true);
+                Carta2.setEnabled(true);
+                Carta3.setEnabled(true);
+                ImageIcon avatar11 = new ImageIcon(jogadores.get(2).getpersonagem().geticon());
                 Personagem1.setIcon(avatar11);
-                vida1.setText(Integer.toString(jg.get(2).getVida()));
+                vida1.setText(Integer.toString(jogadores.get(2).getVida()));
                 
-                ImageIcon avatar12 = new ImageIcon(jg.get(3).getpersonagem().geticon());
+                ImageIcon avatar12 = new ImageIcon(jogadores.get(3).getpersonagem().geticon());
                 personagem2.setIcon(avatar12);
-                vida2.setText(Integer.toString(jg.get(3).getVida()));
+                vida2.setText(Integer.toString(jogadores.get(3).getVida()));
                 
-                ImageIcon avatar13 = new ImageIcon(jg.get(0).getpersonagem().geticon());
+                ImageIcon avatar13 = new ImageIcon(jogadores.get(0).getpersonagem().geticon());
                 Personagem3.setIcon(avatar13);
-                vida3.setText(Integer.toString(jg.get(0).getVida()));
+                vida3.setText(Integer.toString(jogadores.get(0).getVida()));
+                jogadores.get(1).comprarCarta(baralho);
+
                 break;
             case 2:
-              /*  ImageIcon carta20 = new ImageIcon(jg.get(0).getMao().get(0).getimagem());
-                ImageIcon carta21 = new ImageIcon(jg.get(0).getMao().get(1).getimagem());
-                ImageIcon carta22 = new ImageIcon(jg.get(0).getMao().get(2).getimagem());
+                ImageIcon carta20 = new ImageIcon(jogadores.get(0).getMao().get(0).getimagem());
+                ImageIcon carta21 = new ImageIcon(jogadores.get(0).getMao().get(1).getimagem());
+                ImageIcon carta22 = new ImageIcon(jogadores.get(0).getMao().get(2).getimagem());
                 Carta1.setIcon(carta20);
                 Carta2.setIcon(carta21);
-                Carta3.setIcon(carta22);*/
-                ImageIcon avatar20 = new ImageIcon(jg.get(2).getpersonagem().geticon());
+                Carta3.setIcon(carta22);
+                ImageIcon avatar20 = new ImageIcon(jogadores.get(2).getpersonagem().geticon());
                 Atual.setIcon(avatar20);
-                Vidaatual.setText(Integer.toString(jg.get(2).getVida()));
+                Vidaatual.setText(Integer.toString(jogadores.get(2).getVida()));
                 
-                ImageIcon avatar21 = new ImageIcon(jg.get(3).getpersonagem().geticon());
+                ImageIcon avatar21 = new ImageIcon(jogadores.get(3).getpersonagem().geticon());
                 Personagem1.setIcon(avatar21);
-                vida1.setText(Integer.toString(jg.get(3).getVida()));
+                vida1.setText(Integer.toString(jogadores.get(3).getVida()));
                 
-                ImageIcon avatar22 = new ImageIcon(jg.get(0).getpersonagem().geticon());
+                ImageIcon avatar22 = new ImageIcon(jogadores.get(0).getpersonagem().geticon());
                 personagem2.setIcon(avatar22);
-                vida2.setText(Integer.toString(jg.get(0).getVida()));
-                
-                ImageIcon avatar23 = new ImageIcon(jg.get(1).getpersonagem().geticon());
+                vida2.setText(Integer.toString(jogadores.get(0).getVida()));
+                 Carta1.setEnabled(true);
+                Carta2.setEnabled(true);
+                Carta3.setEnabled(true);
+                ImageIcon avatar23 = new ImageIcon(jogadores.get(1).getpersonagem().geticon());
                 Personagem3.setIcon(avatar23);
-                vida3.setText(Integer.toString(jg.get(1).getVida()));
+                vida3.setText(Integer.toString(jogadores.get(1).getVida()));
+                jogadores.get(2).comprarCarta(baralho);
+
                 break;
             case 3:
-                /*ImageIcon carta30 = new ImageIcon(jg.get(0).getMao().get(0).getimagem());
-                ImageIcon carta31 = new ImageIcon(jg.get(0).getMao().get(1).getimagem());
-                ImageIcon carta32 = new ImageIcon(jg.get(0).getMao().get(2).getimagem());
+                ImageIcon carta30 = new ImageIcon(jogadores.get(0).getMao().get(0).getimagem());
+                ImageIcon carta31 = new ImageIcon(jogadores.get(0).getMao().get(1).getimagem());
+                ImageIcon carta32 = new ImageIcon(jogadores.get(0).getMao().get(2).getimagem());
                 Carta1.setIcon(carta30);
                 Carta2.setIcon(carta31);
-                Carta3.setIcon(carta32);*/
-                ImageIcon avatar30 = new ImageIcon(jg.get(3).getpersonagem().geticon());
+                Carta3.setIcon(carta32);
+                jogadores.get(3).comprarCarta(baralho);
+                ImageIcon avatar30 = new ImageIcon(jogadores.get(3).getpersonagem().geticon());
                 Atual.setIcon(avatar30);
-                Vidaatual.setText(Integer.toString(jg.get(3).getVida()));
+                Vidaatual.setText(Integer.toString(jogadores.get(3).getVida()));
                 
-                ImageIcon avatar31 = new ImageIcon(jg.get(0).getpersonagem().geticon());
+                ImageIcon avatar31 = new ImageIcon(jogadores.get(0).getpersonagem().geticon());
                 Personagem1.setIcon(avatar31);
-                vida1.setText(Integer.toString(jg.get(0).getVida()));
+                vida1.setText(Integer.toString(jogadores.get(0).getVida()));
                 
-                ImageIcon avatar32 = new ImageIcon(jg.get(1).getpersonagem().geticon());
+                ImageIcon avatar32 = new ImageIcon(jogadores.get(1).getpersonagem().geticon());
                 personagem2.setIcon(avatar32);
-                vida2.setText(Integer.toString(jg.get(1).getVida()));
-                
-                ImageIcon avatar33 = new ImageIcon(jg.get(2).getpersonagem().geticon());
+                vida2.setText(Integer.toString(jogadores.get(1).getVida()));
+                 Carta1.setEnabled(true);
+                Carta2.setEnabled(true);
+                Carta3.setEnabled(true);
+                ImageIcon avatar33 = new ImageIcon(jogadores.get(2).getpersonagem().geticon());
                 Personagem3.setIcon(avatar33);
-                vida3.setText(Integer.toString(jg.get(2).getVida()));
+                vida3.setText(Integer.toString(jogadores.get(2).getVida()));
         }
     }
-    public  void embaralhar(){
-        Collections.shuffle(baralho);
+    public static final ArrayList<Jogador> getjogadores(){
+        return jogadores;
     }
+       
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         passarVez();
         rodartabuleiro();
         
-        jLabel13.setText("Turno:"+this.cont);
+        
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void Carta1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Carta1MouseEntered
@@ -308,27 +406,77 @@ public class Battle extends javax.swing.JFrame {
     }//GEN-LAST:event_Carta1MouseExited
 
     private void Carta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Carta1MouseClicked
-       String[] jog = new String[4];
-       Jogador jogadorescolhido;
-       
-        for(int i=0;i<4;i++){
-            jog[i] = jg.get(i).getNome();
-        
-        }
-       String selecionado = (String)JOptionPane.showInputDialog(null,"Selecione o Alvo","",JOptionPane.QUESTION_MESSAGE,null,jog,jog[0]);
-       for(Jogador jogador : jg ){
-           if(jogador.getNome() == selecionado){
-               jogadorescolhido = jogador;
-           }
-       }
-       jg.get(this.turno).usarCarta(jg.get(this.turno).getMao().get(0));
+        int dialog = JOptionPane.YES_NO_OPTION;
+            JOptionPane.showConfirmDialog (null, "Deseja usar a carta ?","Carta", dialog);
+        if(dialog == JOptionPane.YES_OPTION){
+            jogadores.get(this.turno).usarCarta(jogadores.get(this.turno).getMao().get(0));
+     
+            Carta1.setIcon(null);
+            Carta1.setText("");
+            Carta1.setEnabled(false);
+        }    
     }//GEN-LAST:event_Carta1MouseClicked
+
+    private void Carta2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Carta2MouseClicked
+        int dialog = JOptionPane.YES_NO_OPTION;
+            JOptionPane.showConfirmDialog (null, "Deseja usar a carta ?","Carta", dialog);
+        if(dialog == JOptionPane.YES_OPTION){
+            jogadores.get(this.turno).usarCarta(jogadores.get(this.turno).getMao().get(1));
+            Carta2.setIcon(null);
+            Carta2.setText("");
+            Carta2.setEnabled(false);
+        }    
+       
+      
+    }//GEN-LAST:event_Carta2MouseClicked
+
+    private void SocoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SocoMouseClicked
+      String[] posicaoalvos = new String[4];
+       for(int i=0; i<4;i++){
+           posicaoalvos[i] = jogadores.get(i).getNome();
+       }
+         int n = JOptionPane.showOptionDialog(null, "Escolha o jogador alvo",
+                "Escolha o alvo",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, posicaoalvos, posicaoalvos[0]);
+         jogadores.get(this.turno).socar(jogadores.get(n));
+         socar.iniciarmusica();
+         passarVez();         
+    }//GEN-LAST:event_SocoMouseClicked
+
+    private void Carta3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Carta3MouseClicked
+        int dialog = JOptionPane.YES_NO_OPTION;
+            JOptionPane.showConfirmDialog (null, "Deseja usar a carta ?","Carta", dialog);
+        if(dialog == JOptionPane.YES_OPTION){
+            jogadores.get(this.turno).usarCarta(jogadores.get(this.turno).getMao().get(0));
+            Carta3.setIcon(null);
+            Carta3.setEnabled(false);
+            Carta3.setText("");
+            
+        }    
+    }//GEN-LAST:event_Carta3MouseClicked
+
+    private void Carta2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Carta2MouseEntered
+       cartagigante.setIcon(Carta2.getIcon());
+
+    }//GEN-LAST:event_Carta2MouseEntered
+
+    private void Carta2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Carta2MouseExited
+        cartagigante.setIcon(null);
+    }//GEN-LAST:event_Carta2MouseExited
+
+    private void Carta3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Carta3MouseEntered
+        cartagigante.setIcon(Carta3.getIcon());
+    }//GEN-LAST:event_Carta3MouseEntered
+
+    private void Carta3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Carta3MouseExited
+       cartagigante.setIcon(null);
+    }//GEN-LAST:event_Carta3MouseExited
     
     private void ordenarJogadores(){
         Random primeiro = new Random();
         turno = primeiro.nextInt(4);
 
-       JOptionPane.showMessageDialog(null,"Primeiro a jogar é o " + jg.get(turno).getNome());
+       JOptionPane.showMessageDialog(null,"Primeiro a jogar é o " + jogadores.get(turno).getNome());
        rodartabuleiro();
     }
     /**
@@ -373,11 +521,13 @@ public class Battle extends javax.swing.JFrame {
     private javax.swing.JLabel Carta3;
     private javax.swing.JLabel Personagem1;
     private javax.swing.JLabel Personagem3;
+    private javax.swing.JLabel Soco;
+    private javax.swing.JLabel Vezde;
     private javax.swing.JLabel Vidaatual;
     private javax.swing.JLabel cartagigante;
+    private javax.swing.JLabel contadordeturno;
+    private javax.swing.JLabel fundo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel personagem2;
     private javax.swing.JLabel vida1;

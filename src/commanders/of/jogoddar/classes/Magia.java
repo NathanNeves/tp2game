@@ -1,22 +1,25 @@
 package commanders.of.jogoddar.classes;
 
+import commanders.of.jogoddar.Battle;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Magia extends Carta {
-    Magia(String nome, int efeito, String imagem){
-        super(nome, efeito,imagem);
+   public Magia(String nome, int efeito, String imagem,String miniatura,String musica){
+        super(nome, efeito,imagem,miniatura,musica);
     }
 
     public void ativar(Jogador caster) {
-        Jogador alvo = escolherAlvo(Main.jogadores);
+        this.getsfx().iniciarmusica();
+       Jogador alvo = escolherAlvo(Battle.getjogadores());
         if(caster.buffado()) {
-            System.out.println(caster.getNome() + " deu " + (this.getEfeito()+ caster.getBuff().getEfeito())
+            JOptionPane.showMessageDialog(null,caster.getNome() + " deu " + (this.getEfeito()+ caster.getBuff().getEfeito())
                     + " na cara de " + alvo.getNome());
 
-            alvo.tomarDano(this.getEfeito() + caster.getBuff().getEfeito());
+                alvo.tomarDano(this.getEfeito() + caster.getBuff().getEfeito());;
 
         }else{
-            System.out.println(caster.getNome() + " deu " + this.getEfeito() + " na cara de " + alvo.getNome());
+            JOptionPane.showMessageDialog(null,caster.getNome() + " deu " + this.getEfeito() + " na cara de " + alvo.getNome());
 
             alvo.tomarDano(this.getEfeito());
         }

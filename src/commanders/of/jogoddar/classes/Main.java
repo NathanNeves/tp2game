@@ -68,9 +68,9 @@ public class Main {
                     break;
 
                 case 3:
-                    Jogador alvo = Carta.escolherAlvo(jogadores);
+                    
 
-                    jogadores[turno].socar(alvo);
+                    
 
                     break;
 
