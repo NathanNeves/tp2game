@@ -42,16 +42,22 @@ public class Jogador {
             alvo.tomarDano(this.dano);
         }
     }
+     public boolean verificarindex(int index){
+        if(index >=this.mao.size()){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
 
     public void comprarCarta(ArrayList<Carta> baralho){
         Carta carta = baralho.get(baralho.size() - 1);
         baralho.remove(baralho.size() - 1);
+        this.mao.add(carta);
         if(mao.size() >= 3){
             mao.remove(0);
             mao.add(0,carta);
-        }else{
-            this.mao.add(carta);
-    
         }
     }
 

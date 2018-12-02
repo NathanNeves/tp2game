@@ -2,23 +2,28 @@ package commanders.of.jogoddar.classes;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 public abstract class Carta {
     protected String nome;
-    private String img;
+    private ImageIcon img;
     private int efeito;
     private Musica som;
-    private String miniatura;
+    private ImageIcon miniatura;
     //Personagem tipo;
     String descricao;
 
     Carta(String nome, int efeito,String img,String miniatura,String som){
         this.nome = nome;
         this.efeito = efeito;
-        this.img = img;
+        this.img = new ImageIcon(img);
         this.som = new Musica(som);
+        this.miniatura = new ImageIcon(miniatura);
+    }
+    public ImageIcon getminiatura(){
+        return miniatura;
     }
 
     public String getNome(){
@@ -30,7 +35,7 @@ public abstract class Carta {
     public int getEfeito(){
         return efeito;
     }
-    public String getimagem(){
+    public ImageIcon getimagem(){
         return this.img;
     }
 
