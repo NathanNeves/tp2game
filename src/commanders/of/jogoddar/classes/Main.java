@@ -78,7 +78,7 @@ public class Main {
                //     passarVez();
             }
 
-            jogadores[turno].checaDurabilidade();
+            jogadores[turno].checarDurabilidade();
             jogadores[turno].checarBuff();
 
 

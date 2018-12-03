@@ -31,6 +31,7 @@ public class Inicio extends javax.swing.JFrame {
     public Inicio() {
         this.intro.iniciarmusica();
         initComponents();
+        this.setResizable(false);
         
         
         
@@ -48,7 +49,6 @@ public class Inicio extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
@@ -62,15 +62,8 @@ public class Inicio extends javax.swing.JFrame {
         jLabel1.setBounds(150, 50, 516, 58);
         jLabel1.getAccessibleContext().setAccessibleName("titulo");
 
-        jButton1.setText("Créditos");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(340, 290, 110, 60);
-
+        jButton2.setBackground(new java.awt.Color(0, 153, 204));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Inicio");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +71,7 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(340, 185, 110, 60);
+        jButton2.setBounds(340, 230, 110, 60);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/commanders/of/jogoddar/blog_246.jpg"))); // NOI18N
         jPanel1.add(jLabel3);
@@ -97,15 +90,6 @@ public class Inicio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    //Função que como o nome diz toca uma musica
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           this.intro.pararmusica();
-           this.vinheta.iniciarmusica();
-          Creditos credito = new Creditos();
-          credito.setVisible(true);
-          
-          
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
@@ -151,7 +135,6 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

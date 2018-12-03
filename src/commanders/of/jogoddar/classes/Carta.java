@@ -10,7 +10,7 @@ public abstract class Carta {
     protected String nome;
     private ImageIcon img;
     private int efeito;
-    private Musica som;
+    protected Musica som;
     private ImageIcon miniatura;
     //Personagem tipo;
     String descricao;
@@ -38,17 +38,25 @@ public abstract class Carta {
     public ImageIcon getimagem(){
         return this.img;
     }
-
     public Jogador escolherAlvo(ArrayList<Jogador> jogadores){
-       String[] posicaoalvos = new String[4];
+         ArrayList<Jogador> vivos = new ArrayList<Jogador>();
        for(int i=0; i<4;i++){
-           posicaoalvos[i] = jogadores.get(i).getNome();
-       }
+           if(jogadores.get(i).estaVivo()==true){
+            vivos.add(jogadores.get(i));
+       }}
+           String[] posicaoalvos = new String[vivos.size()];
+           for(int i=0; i<vivos.size();i++){
+               posicaoalvos[i] = vivos.get(i).getNome();
+           }
+       
          int n = JOptionPane.showOptionDialog(null, "Escolha o jogador alvo",
                 "Escolha o alvo",
-                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, posicaoalvos, posicaoalvos[0]);
-        return jogadores.get(n);
-    }
+                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, posicaoalvos,posicaoalvos[0]);
+        return vivos.get(n);
+       }
+    
+
+    
 
     public abstract void ativar(Jogador caster);
 

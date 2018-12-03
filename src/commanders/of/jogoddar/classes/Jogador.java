@@ -1,6 +1,7 @@
 package commanders.of.jogoddar.classes;
 
 
+import commanders.of.jogoddar.Battle;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -15,6 +16,8 @@ public class Jogador {
     private Personagem personagem;
     private ArrayList<Carta> mao = new ArrayList<>();
     private Arma item = null;
+    private boolean proxTurno = true;
+    private boolean vivo = true;
     public Jogador(String nome, Personagem personagem){
         this.nome = nome;
         this.personagem = personagem;
@@ -23,7 +26,19 @@ public class Jogador {
     public String getNome(){
         return nome;
     }
-
+    public boolean estaVivo(){
+        if(vida <= 0){
+            this.vivo = false;
+            return false;
+        }
+        return true;
+    }
+    public boolean getTurno(){
+        return proxTurno;
+    }
+    public void setproximoturno(){
+        proxTurno = true;
+        }
     public int getVida(){
         return vida;
     }
@@ -51,13 +66,16 @@ public class Jogador {
         }
     }
 
+     
+    
     public void comprarCarta(ArrayList<Carta> baralho){
+        
         Carta carta = baralho.get(baralho.size() - 1);
         baralho.remove(baralho.size() - 1);
         this.mao.add(carta);
-        if(mao.size() >= 3){
+        if(mao.size() > 3){
             mao.remove(0);
-            mao.add(0,carta);
+            
         }
     }
 
@@ -97,7 +115,7 @@ public class Jogador {
         mao.remove(carta);
     }
 
-    public void checaDurabilidade(){
+    public void checarDurabilidade(){
         if(item != null && item.getDurabilidade() == 0){
             item = null;
         }else if(item != null){

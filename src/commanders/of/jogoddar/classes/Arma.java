@@ -6,7 +6,7 @@ public class Arma extends Carta {
     int durabilidade;
     int modArma;
 
-    Arma(String nome, int efeito, int durabilidade, int modArma, String imagem,String miniatura,String musica){
+    public Arma(String nome, int efeito, int durabilidade, int modArma, String imagem,String miniatura,String musica){
         super(nome, efeito,imagem,miniatura,musica);
         this.durabilidade = durabilidade;
         this.modArma = modArma;
@@ -14,7 +14,8 @@ public class Arma extends Carta {
 
     public void ativar(Jogador caster){
         caster.equiparArma(this);
-        JOptionPane.showInputDialog(caster.getNome() + " equipou " + this.nome);
+        JOptionPane.showMessageDialog(null,caster.getNome() + " equipou " + this.nome);
+        som.iniciarmusica();
     }
 
     public int getDurabilidade(){
