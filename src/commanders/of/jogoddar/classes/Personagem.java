@@ -5,7 +5,7 @@ public enum Personagem {
     /**
      *
      */
-    MAGO("Mago",2,"icons\\\\wizard.png"), GUERREIRO("Guerreiro",1,"icons\\\\knight.png"), PALADINO("Paladino",5,"icons\\\\cleric.png"), CLERIGO("Clerigo",2,"icons\\\\anao.png");
+    MAGO("Mago",2,"icons\\\\wizard.png"), GUERREIRO("Guerreiro",1,"icons\\\\knight.png"), PALADINO("Paladino",5,"icons\\\\anao.png"), CLERIGO("Clerigo",2,"icons\\\\cleric.png");
 
     
     private String linkimagem;

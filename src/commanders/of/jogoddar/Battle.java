@@ -129,7 +129,7 @@ public class Battle extends javax.swing.JFrame {
         Vezde.setForeground(new java.awt.Color(255, 255, 255));
         Vezde.setText("Vez de:");
         getContentPane().add(Vezde);
-        Vezde.setBounds(990, 0, 340, 150);
+        Vezde.setBounds(980, -20, 340, 150);
 
         Vidaatual.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Vidaatual.setForeground(new java.awt.Color(255, 255, 255));
@@ -151,7 +151,7 @@ public class Battle extends javax.swing.JFrame {
         getContentPane().add(vida2);
         vida2.setBounds(1510, 40, 60, 120);
         getContentPane().add(cartagigante);
-        cartagigante.setBounds(630, 130, 500, 600);
+        cartagigante.setBounds(630, 90, 500, 666);
 
         Soco.setIcon(new javax.swing.ImageIcon("C:\\Users\\natha\\OneDrive\\Documentos\\Commanders of Jogoddar\\icons\\fists.png")); // NOI18N
         Soco.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -160,13 +160,13 @@ public class Battle extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Soco);
-        Soco.setBounds(-30, 800, 150, 90);
+        Soco.setBounds(-30, 870, 150, 90);
 
         contadordeturno.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         contadordeturno.setForeground(new java.awt.Color(255, 255, 255));
         contadordeturno.setText("Turno:");
         getContentPane().add(contadordeturno);
-        contadordeturno.setBounds(490, 0, 340, 150);
+        contadordeturno.setBounds(490, -20, 340, 150);
 
         carta1.setText("jButton1");
         carta1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -272,6 +272,7 @@ public class Battle extends javax.swing.JFrame {
         if(!jogando.estaVivo()){
             passarVez();
         }
+        vertamanhoBaralho();   
         gameover();
         alterarProximoturno();
         checarcarta(turno);
@@ -293,7 +294,7 @@ public class Battle extends javax.swing.JFrame {
     
     }
    private void gameover(){
-    vertamanhoBaralho();   
+    
     if(!jogadores.get(0).estaVivo() && !jogadores.get(1).estaVivo() && !jogadores.get(2).estaVivo()){
         dispose();
         gameOver go3 = new gameOver(jogadores.get(3));

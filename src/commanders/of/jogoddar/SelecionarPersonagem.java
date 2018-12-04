@@ -45,13 +45,13 @@ public class SelecionarPersonagem extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -70,21 +70,27 @@ public class SelecionarPersonagem extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jLabel15.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setBackground(new java.awt.Color(204, 204, 204));
+        jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(320, 150, 300, 150);
+
+        jLabel15.setBackground(new java.awt.Color(204, 204, 204));
         jLabel15.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jLabel15);
         jLabel15.setBounds(1080, 530, 290, 150);
 
-        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel14.setBackground(new java.awt.Color(204, 204, 204));
         jLabel14.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jLabel14);
         jLabel14.setBounds(320, 400, 290, 150);
 
-        jLabel13.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel13.setBackground(new java.awt.Color(204, 204, 204));
         jLabel13.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.add(jLabel13);
         jLabel13.setBounds(1100, 270, 290, 150);
 
@@ -99,12 +105,6 @@ public class SelecionarPersonagem extends javax.swing.JFrame {
         jLabel10.setText("jLabel8");
         jPanel1.add(jLabel10);
         jLabel10.setBounds(640, 290, 130, 110);
-
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Tempus Sans ITC", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(51, 51, 51));
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(330, 150, 290, 150);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel5.setText("Player 3");
@@ -233,7 +233,7 @@ public class SelecionarPersonagem extends javax.swing.JFrame {
 
         }
          else if(jComboBox2.getSelectedItem() == "Paladino"){
-            personagenssel.add(new Jogador("Player2",Personagem.MAGO));
+            personagenssel.add(new Jogador("Player2",Personagem.PALADINO));
 
         }
             
